@@ -1,4 +1,4 @@
-export const API_BASE_URL = "http://localhost:5000";
+export const API_BASE_URL = "https://smartshelf-backend.onrender.com"
 const BASE_URL = API_BASE_URL;
 
 function getToken(): string | null {
