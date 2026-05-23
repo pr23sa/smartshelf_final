@@ -1,4 +1,4 @@
-export const API_BASE_URL = "https://smartshelf-backend.onrender.com"
+export const API_BASE_URL = import.meta.env.VITE_API_URL;
 const BASE_URL = API_BASE_URL;
 
 function getToken(): string | null {
