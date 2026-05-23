@@ -13,6 +13,28 @@ export default function AuthPage() {
   const [authOpen, setAuthOpen] = useState(false);
   const [showMobileForm, setShowMobileForm] = useState(false);
 
+  const [backendReady, setBackendReady] = useState(false);
+
+useEffect(() => {
+  const wake = async () => {
+    try {
+      await fetch("https://smartshelf-backend.onrender.com/api/health");
+    } catch {}
+    finally {
+      setBackendReady(true);
+    }
+  };
+  wake();
+}, []);
+
+if (!backendReady) return (
+  <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',height:'100vh',gap:'12px'}}>
+    <div style={{fontSize:'24px'}}>📚</div>
+    <div style={{fontSize:'16px',fontWeight:600,color:'#1a1a2e'}}>Starting SmartShelf...</div>
+    <div style={{fontSize:'13px',color:'#6b7280'}}>First load takes ~30 seconds. Please wait.</div>
+  </div>
+);
+
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 50);
     return () => clearTimeout(t);
@@ -301,3 +323,5 @@ export default function AuthPage() {
     </div>
   );
 }
+
+

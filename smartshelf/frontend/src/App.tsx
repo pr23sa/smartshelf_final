@@ -11,6 +11,12 @@ import Sidebar from "./components/Sidebar";
 import { Menu, X } from "lucide-react";
 import "./App.css";
 
+useEffect(() => {
+  // Wake up backend on app load
+  fetch("https://smartshelf-backend.onrender.com/api/health")
+    .catch(() => {});
+}, []);
+
 function AppContent() {
   const { user } = useAuth();
   const [page, setPage] = useState("dashboard");

@@ -11,6 +11,9 @@ from recommendations import get_recommendations
 from database import init_db, get_db, migrate_schema, seed_admin
 
 app = Flask(__name__)
+@app.route("/api/health")
+def health():
+    return jsonify({"status": "ok"})
 
 def migrate_borrows_table():
     conn = get_db()
